@@ -1,0 +1,111 @@
+CCNA Topics covered:
+
+5.0 Security Fundumentals
+	
+	5.1 Define Security concepts (threats, vulnerabilities, exploits,
+	mitigation techniques)
+	5.2 Describe security program elements (user awareness, training and
+	physical access control)
+	5.4 Describe security password policies elements, such as management, 
+	complexity, and password alternatives (multifactor authentication,
+	certificates, and biometrics)
+	5.8 Differentiate authentication, authorization, and accounting concepts
+
+Things we'll cover:
+
+- Key security concepts
+- Common attacks
+- Passwords/Multi-Factor Authentication (MFA)
+- Authentication, Authorization, Accounting (AAA)
+- Security Program Elements
+
+=== Why Security?
+
+What is the purpose of security in an enterprise?
+
+Foundation of security = CIA Triad:
+
+- C = Confidentiality
+	> only authorized users should be able to access data
+	> some data is public, some is secret
+	> there are degrees in the middle, some is more secret, some is less
+- I = Integrity
+	> data should not be modified by unauthorized users
+	> data should be correct and authentic
+- A = Availability
+	> The network/systems should be available to authorized users
+
+Attackers threaten the CIA of an enterprise
+
+A vulnerability is any weakness that can damage the CIA of a system
+	- a weakness is not a problem on its own, ie windows of a house
+
+An exploit is something that can be used to exploit the vulnerability
+	- an explout is not a problem on its own, ie a rock near a house
+
+A threat is the potential of a vulnerability to be exploited
+	- a hacker exploiting a vulnerability is a threat, ie a robber that uses a
+	rock to break a house's window
+
+A mitigation technique is something that can protect against threats
+	- should be implemented everywhere a vulnerabilty can be exploited: client
+	devices, servers, switches, routers, firewalls, etc.
+
+NO SYSTEM IS PERFECTLY SECURE! THERE ARE NO GUARANTEES IN SECURITY!
+
+=== Common attacks
+
+- DoS (denial-of-service) attacks
+- Spoofing attacks
+- Reflection/amplification attacks
+- Man-in-the-middle attacks
+- Reconnaissance attacks
+- Malware
+- Social engineering attacks
+- Password-related attacks
+
+~ DoS attacks
+DoS attacks threaten the A-availabilty of a system.
+One common DoS attack is the TCP SYN flood.
+	- TCP three-way handshake: SYN | SYN-ACK | ACK
+	- The attacker sends countless TCP SYN messages to the target
+	- The target sends a SYN-ACK in response to each SYN it gets
+	- The attacker never replies with the final ACK of the TCP three-way 
+	handshake
+	-> Incomplete connections fill up the target's TCP connection table
+	-> But the incomplete connections time out? The attacker keeps sending 
+	SYN messages
+	=> The target can't make TCP connections.
+
+A DoS attack is typically not done by a single user, but by many. In a DDoS
+(distibuted DoS) attack, the attacker infects many target computers (or simply
+has many at his disposal somehow) with malware and uses them all to initiate a
+denial-of-service attack, for example a TCP SYN flood attack. The group of
+infected computers is called a botnet.
+
+Again, as a result the target cannot respond to legitimate TCP connection 
+requests.
+
+~ Spoofing attacks
+To spoof an address is to use a fake source address (IP or MAC).
+Numerous attacks involve spoofing, it's not a single kind of attack.
+An example is a DHCP exhaustion attack.
+An attacker uses spoofed MAC address to flood DHCP Discover messages.
+The target's DHCP pool becomes full, resulting in denial-of-service to others.
+Not all spoofing attacks are DoS attacks, an example of spoofing attack that
+threatens C and I is discussed later.
+
+~ Reflection/Amplification attacks
+In a reflection attack, the ATTACKER sends traffic to a REFLECTOR, and spoofs
+the source address of its packets using the TARGET's IP address.
+The REFLECTOR (ie a DNS server) sends the reply to the TARGET's IP address.
+If the amount of traffic sent to the target is large enough, this can result in
+denial-of-service.
+A reflection attack becomes an amplification attack when the amount of traffic
+sent by the ATTACKER is small, but it triggers a large amount of traffic to be
+sent from the REFLECTOR to the TARGET.
+For example, there are DNS and NTP vulnerabilities that can be exploited for
+amplification attacks.
+
+
+
