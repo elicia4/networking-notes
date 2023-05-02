@@ -41,7 +41,7 @@ control list:
 
 	Permission	IP Address	Protocol	Dst	Port
 	allow	162.213.214.140	TCP	ANY	80
-	allow	54.21.66.112	TCP ANY	80
+	allow	54.21.66.112	TCP	ANY	80
 	deny	40.55.130.66	TCP	ANY	80
 
 It shows a list of IP addresses that have been allowed or denied by this 
