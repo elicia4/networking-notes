@@ -1,0 +1,94 @@
+These are notes on this video by PowerCert Animated Videos:
+https://youtu.be/kDEX1HXybrU
+===============================================================================
+
+A firewall is a system that is designed to prevent unauthorized access from
+entering a private network by filtering information that comes in from the
+Internet. A firewall blocks unwanted traffic and permits wanted traffic.
+
+A firewall's purpose is to create a safety barrier between a private network
+and the public Internet, because out on the Internet, there's always going to
+be malicious users and traffic that may try to penetrate into a private network
+and cause harm. A firewall is the main component on a network to prevent this.
+
+A firewall is especially important to a large organization that has a lot of
+computers computers and servers in them. You don't want all those devices 
+accessible to everyone on the internet where a hacker can come in and totally
+disrupt that organization.
+
+A firewall that's used in computers networks is very similiar to how a firewall
+works in a building structure. In fact, that is where the word 'firewall' came
+from. A firewall in a building structure provides a barrier so that in the
+event of an actual fire, on either side of a building, the firewall is there to
+keep it from spreading over to the other side.
+
+So the firewall is there to keep the fire from destroying the entire building.
+But if the firewall wasn't there here, the fire would spread to the other side
+and the whole building would be destroyed. And a network firewall works in a 
+similiar way as a structure firewall. It stops harmful activity before it can
+spread into the other side of the firewall and cause harm to a private network.
+
+In today's high-tech world, a firewall is essential to every home and 
+especially a business or an organization to keep their network safe. 
+
+A firewall works by filtering the incoming network data and determines by its
+rules if it is allowed to enter a network, these rules are also known as an
+access control list. These rules are customizable and are determined by the
+network administrator. The administrator decides not only what can enter a
+network but also what can leave a network. These rules either allow or deny
+permissions. So as an example, here we have some rules in a firewall's access
+control list:
+
+	Permission	IP Address	Protocol	Dst	Port
+	allow	162.213.214.140	TCP	ANY	80
+	allow	54.21.66.112	TCP ANY	80
+	deny	40.55.130.66	TCP	ANY	80
+
+It shows a list of IP addresses that have been allowed or denied by this 
+firewall. Traffic from some IP addresses are allowed to
+enter this network, but traffic from IP address has been denied.
+
+So, if traffic from this IP address tried to get into this network, the
+firewall will deny it because of the rules that are set in the firewall. But
+the other IP addresses are granted access because the rules allow them.
+
+Firewalls don't just make rules based in IP addresses, but they can also make
+rules based on domain names, protocols, programs, ports, and keywords. Let's
+say in this example, the firewall rules are controlling access by port numbers.
+And let's say that the rules have allowed incoming data that's using port
+number 80, 25, and 110, and the data using those ports have been given access
+to this network. So any incoming data that's using those ports, can pass 
+through the firewall. But also in this firewall, the rules have denied any data
+that's using port numbers 23 and 3389. So any incoming data that's using those
+port numbers, the firewall will deny access and it won't get past the firewall.
+So in a nutshell this is how firewalls basically work.
+
+Firewalls come in different types. One type is called a host-based firewall, 
+and this is a software firewall. This is the kind of firewall that is installed
+on a computer and it protects that computer and nothing else. For example, 
+later versions of Microsoft operating systems come pre-packaged with a 
+host-based firewall. And you can see that example here. There are also 3rd 
+party host-based firewalls that can be purchased and installed on a computer.
+For example, Zone Alarm, which is a popular 3rd party host-based firewall. A
+lot of antivirus programs will have a built-in host-based firewall. 
+
+Another type of firewall is called a network-based firewall. A network-based
+firewall is a combination of hardware and software, and it operates at the
+network layer. It is placed between a private network and the public Internet.
+But unlike a host-based firewall, where it only protects that computer, a
+network-based firewall protects the entire network, and it does through
+management rules that are applied to the entire network so that any harmful
+activity can be stopped before it reaches the computers. 
+
+Network-based firewalls can be a stand alone product which is mainly used by
+large organizations. They can also built-in as a component of a router which
+is what a lot of smaller organizations rely on. Or they can also be deployed in
+a service provider's cloud infrastructure.
+
+Now, a lot of organizations will use both network-based and host-based of 
+firewalls. They will use a network-based firewall to protect the entire network
+as a whole and they will also use host-based firewalls for their individual
+protection for their computers and servers. And by doing this, it'll ensure 
+maximum protection. Because if harmful data just so happens to get passed the
+network firewall the host-based firewalls on each computer will be there to 
+stop it.
