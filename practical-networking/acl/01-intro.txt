@@ -1,4 +1,4 @@
-This are notes on videos by Practical Networking: 
+These are notes on videos by Practical Networking: 
 https://youtu.be/0gGhuYOh-54
 
 Access Control Lists - ACLs
@@ -22,7 +22,7 @@ We will use a topology with two computers connected to a router's interface
 fa0/0. The router's interface fa0/1 will go to two servers.
 
 When you apply an access list to an interface, that access list is referred to 
-as 'Packet Filer". The idea is that any packets sent by your inside hosts are 
+as 'Packet Filter". The idea is that any packets sent by your inside hosts are 
 gonna be matched against the access list to determine whether a router likes
 those packets or not. There are two types of ACLs:
 
@@ -49,6 +49,5 @@ Packet Filter ACL can be applied:
 
     per interface: the actual physical interface of a router
     per direction: IN our OUT (IN the router or OUT the router)
-    per IP Protocol: either IPv4 or IPv6, you cant have a single ACL filtering both 
-
-
+    per IP Protocol: either IPv4 or IPv6, you cant have a single ACL filtering 
+	both 
