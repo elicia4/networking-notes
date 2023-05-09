@@ -13,7 +13,7 @@ Two types of ACLs:
 Two ways to configure ACLs (i.e., syntax):
 	Numbered
 	Named
-Either set of syntax can be used to configure either type of ACL.
+Either syntax can be used to configure either type of ACL.
 
 This file describes how to configure Numbered ACLs.
 
@@ -42,7 +42,7 @@ configuration. The number itself is very significant:
 
 	permit and deny are relative to how ACL is applied
 
-	remark - comment, ignore in packet processing. This will turn the rest of
+	remark - comment, ignored in packet processing. This will turn the rest of
 	the syntax into a text field, and you can type whatever you want
 
 <protocol> - you can filter on different protocols.
