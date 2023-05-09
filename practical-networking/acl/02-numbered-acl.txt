@@ -1,0 +1,68 @@
+Access Control Lists:
+
+Purpose of an access list is to identify traffic
+	ACLs applied to interfaces are sometimes called "Packet Filters"
+
+Only one Packet Filter ACL can be applied:
+	per Interface, per Direction, per IP Protocol
+
+Two types of ACLs:
+	Standard - matches on Source IP
+	Extended - matches on Src IP, Dest IP, Src Port, Dest Port, Protocol
+
+Two ways to configure ACLs (i.e., syntax):
+	Numbered
+	Named
+Either set of syntax can be used to configure either type of ACL.
+
+This file describes how to configure Numbered ACLs.
+
+Syntax for a Numbered Standard ACL:
+	
+	access-list <ID#> <action> <source>
+
+Syntax for a Numbered Extended ACL:
+
+	access-list <ID#> <action> <protocol> <source> <destination>
+
+access-list - command to configure Numbered ACL
+
+<#ID> - ID Number which links multiple entries together, each access-list
+entry is an ID number and then a match statement, what links multiple entries
+together is the ID number. That is the purpose of an ID number, it allows you
+to link multiple entries into one ACL. (ACE = access list entry, series of ACEs
+makes an ACL). ID number is also how you will refer to the ACL elsewhere in the
+configuration. The number itself is very significant:
+	Standard ACL = 1-99 OR 1300-1999
+	Extended ACL = 100-199 OR 2000-2699
+
+<action>
+	permit - Accept traffic
+	deny - Reject traffic
+
+	permit and deny are relative to how ACL is applied
+
+	remark - comment, ignore in packet processing. This will turn the rest of
+	the syntax into a text field, and you can type whatever you want
+
+<protocol> - you can filter on different protocols.
+	ip - match IP traffic (i.e., all IPv4 traffic)
+	tcp - match TCP traffic (ports specified later)
+	udp - match UDP traffic (ports specified later)
+	icmp - match ICMP traffic (ping, traceroute, etc...)
+	Lot's more: gre, esp, ahp, etc...
+
+<source> or <destination>
+	Either are defined with: <IP Adresses> [Port]
+	To match a Subnet: <NetID> <Wildcard Mask>
+	To match a single IP address: host <#.#.#.#>
+	To match ALL IP addresses: any
+
+	To match a specified port: eq <#>
+	To specify a range of ports: range <#> <#> (INCLUDING BOTH)
+	Other qualifiers: gt <#> / lt <#> / neq <#> (greater than, less than, not
+	equal)
+	
+	The port section is optional
+
+Some example configurations are presented in the next note.
