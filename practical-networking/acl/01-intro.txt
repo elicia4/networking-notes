@@ -1,0 +1,54 @@
+This are notes on videos by Practical Networking: 
+https://youtu.be/0gGhuYOh-54
+
+Access Control Lists - ACLs
+
+Purpose: identify traffic
+	How you apply an ACL determines its effect
+
+For example, if you apply an ACL to:
+
+	an interface - matched traffic is permitted through
+	an NAT - matched traffic is processed through NAT
+	a VPN - matched traffic is encrypted and sent through the tunnel
+    Route-Map - matched advertisements are accepted
+    QoS - matched traffic is prioritized (or de-prioritized)
+    ...and many other apps
+
+Again, an ACL is simply a tool on a Cisco router used to identify traffic.
+We will focus on interfaces, the most common use for an access list.
+
+We will use a topology with two computers connected to a router's interface   
+fa0/0. The router's interface fa0/1 will go to two servers.
+
+When you apply an access list to an interface, that access list is referred to 
+as 'Packet Filer". The idea is that any packets sent by your inside hosts are 
+gonna be matched against the access list to determine whether a router likes
+those packets or not. There are two types of ACLs:
+
+    Standard
+    Extended
+
+The difference is which fields in the packets they're using to identify traffic.
+A standard ACL only matches the source IP. It provides a limitation, since it
+allows only complete trust or complete distrust. Let's say you had a requirement
+to allow PC1 to speak to Server1, but not allow PC1 to connect to Server2. With
+the standard access list you can either permit the PC to speak to both servers,
+or neither one of them (since you can ONLY configure the source IP address, not
+anything else.) You can allow only complete trust or complete distrust. So that
+is why Extended ACLs exist. They allow you to filter on many more fields, five
+of them:
+
+    Source IP
+    Destination IP
+    Source Port
+    Destination Port
+    Protocol
+
+Packet Filter ACL can be applied:
+
+    per interface: the actual physical interface of a router
+    per direction: IN our OUT (IN the router or OUT the router)
+    per IP Protocol: either IPv4 or IPv6, you cant have a single ACL filtering both 
+
+
