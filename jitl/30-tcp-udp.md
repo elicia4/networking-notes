@@ -60,7 +60,8 @@ destination port of 21[^1], and randomly selects the source port 60000.
     PC1 ---=(TCP):Src:60000 Dst:21=---> SRV2
     SRV2 <---=(TCP):Src:21 Dst:60000=--- PC1 
 
-[^1]: FTP = File Transfer Protocol, it is used to transfer files.
+[^1]: 21 is used for FTP, the File Transfer Protocol, it is used to transfer
+    files.
 
 That's how ports identify the Application Layer protocol, such as HTTP or FTP,
 and how they are used to manage multiple communication sessions at once.
@@ -74,4 +75,4 @@ The following ranges have been designated by IANA[^2] for port numbers:
 - **ephemeral/private/dynamic** ports: 49152 - 65535 (hosts use this range when
 selecting a random source port)
 
-[^2]: IANA = Internet Assigned Numbers Authority
+[^2]: IANA = Internet Assigned Numbers Authority.
