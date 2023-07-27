@@ -9,6 +9,7 @@ Things to cover:
 - TCP (Transmission Control Protocol)
 - UDP (User Datagram Protocol)
 - Comparing TCP & UDP
+- Important Port Numbers
 
 ### Basics of Layer 4
 
@@ -197,7 +198,93 @@ a segment isn't acknowledged, it is sent again"?
    segment. This is called TCP retransmission.
 5. Ack: 22
 
-Let us also see how TCP provides flow control.
+Let us also see how TCP provides flow control:
 
+- Acknowledging every single segment, no matter what size, is inefficient.
+- The TCP header's **Windows Size** field allows more data to be sent before an
+  acknowledgement is required. For example, a host sends 3 segments 20-22, and
+  then an Ack is sent back to it with sequence number 23.
 
+```
+-> Seq: 20
+-> Seq: 21
+-> Seq: 22
+<- Ack: 23
+```
 
+- A 'sliding window' can be used to dynamically adjust how large the window
+  size is. It is increased as much as possible until a segment is dropped, then
+  the window size backs down to a more reasonable level, and slowly increases
+  again.
+
+NOTE: In all of these examples, very simple sequence numbers are used, in
+reality they are a lot bigger and do not increase by 1 with each message.
+
+### UDP
+
+- UDP is not connection-oriented.
+    - The sending host does not establish a connection with the destination
+      host before sending data. The data is simply sent.
+- UDP does not provide reliable communication.
+    - When UDP is used, acknowledgements are not sent for received segments. If
+      a segment is lost, UDP has no mechanism to re-transmit it. Segments are
+      sent 'best-effort'.
+- UDP does not provide sequencing.
+    - There is no sequence number field in the UDP header. If segments arrive
+      out of order, UDP has no mechanism to put them back in order.
+- UDP does not provide flow control.
+    - UDP has no mechanism like TCP's windows size to control the flow of data.
+
+Let's take a look at the UDP header:
+
+1. 0-15: Source port (16)
+1. 16-31: Destination port (16)
+1. 32-47: Length (16)
+1. 48-63: Checksum (16)
+
+The differences in the contents of the headers are what makes the functionality
+in TCP possible.
+
+### Comparing TCP & UDP
+
+- TCP provides more features than UDP, but at the cost of additional
+  **overhead**.
+- For applications that require reliable communications (for example
+  downloading a file), TCP is preferred.
+- For apps like real-time voice and video, UDP is preferred.
+- There are some apps that use UDP, but provide reliability and other TCP
+  functionality within the app itself.
+- There are apps that use both TCP & UDP, depending on the situation(like DNS).
+
+| TCP | UDP |
+| :-------: | :-------: |
+| Connection-oriented | Connectionless |
+| Reliable | Unreliable |
+| Sequencing | No sequencing |
+| Flow control | No flow control |
+| Use for downloads, file sharing, etc. | Used for VoIP, live video, etc |
+
+### Important Port Numbers
+
+1. TCP
+    1. FTP data (20) - File Transfer Protocol
+    1. FTP control (21)
+    1. SSH (22) - used to connect to CLI of nodes, encrypted
+    1. Telnet (23) - same function as SSH, but it's not encrypted
+    1. SMTP (25) - used for sending email
+    1. HTTP (80) - used for accessing webpages
+    1. POP3 (110) - Post Office Protocol 3 - used for retreiving emails
+    1. HTTPS (443) - HTTP Secure
+1. UDP
+    1. DHCP server (67) - Dynamic Host Configuration Protocol - allows hosts to
+    set their IP addresses automatically and other things.
+    1. DHCP client (68)
+    1. TFTP (69) - Trivial FTP
+    1. SNMP agent (161) - Simple Network Management Protocol
+    1. SNMP manager (162)
+    1. Syslog (514)
+1. TCP & UDP
+    1. DNS (53)
+
+That's pretty much everything you need for the CCNA exam. You only need to be
+able to compare TCP to UDP (exam topic 1.5), so focus on that.
