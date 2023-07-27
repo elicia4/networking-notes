@@ -118,10 +118,11 @@ TCP header consists of the following parts:
 
 Explaining the header:
 
-1. There are 2^16 = 65536 available port numbers in total.
+1. There are **2^16** = 65536 available port numbers in total.
 1. Sequence acknowledgement numbers provide sequencing and reliable
    communication.
-1. ACK, SYN, and FIN flags are used to establish and terminate connections.
+1. **ACK**, **SYN**, and **FIN** flags are used to establish and terminate
+   connections.
 1. The window size field is used for flow control, adjusting the rate at which
    data is sent.
     
@@ -130,4 +131,73 @@ Handshake. It has that name because it involves three messages sent between the
 hosts. 
 
 Let's say PC1 wants to access a webpage on SRV1 using HTTP. First it must
-establish a TCP connection.
+establish a TCP connection, to do it uses ACK (meaning acknowledgement) and SYN
+(meaning synchronization) flags.
+
+1. First PC1 will send a TCP segment with the SYN flag set. 
+2. Next, SRV1 will reply by sending a TCP segment back with the SYN and ACK
+   flags set. 
+3. Finally, PC1 will send a TCP segment with the ACK bit set. 
+
+After this process is done, the connection is established. The real data
+exchange can now begin. The first three messages are just to establish the
+connection.
+
+TCP has to follow a proccess to terminate connections as well. It is less
+famous than the three-way handshake. It is called a four-way handshake, the
+process uses the **FIN** and **ACK** flags.
+
+1. PC1 sends a TCP segment to SRV1 with the FIN flag set.
+2. SRV1 responds with an ACK.
+1. SRV1 then also sends its own FIN.
+1. Finally, PC1 sends its own ACK in response to SRV1's FIN, and the connection
+   is terminated.
+
+
+Now let us see how TCP uses the sequence and acknowledgement fields of the
+header to provide reliable communication and sequencing. Let's look at an exchange between two PCs.
+
+When PC1 sends the three-way handshake's SYN message, it sets a random initial
+sequence number, 10 for example. When SYN-ACK is sent back, it sets its own
+random initial sequence number, let's say 50. Not only that, it also
+acknowledges that it received PC1's segment with a sequence number of 10 by
+setting its own acknowledgement field to 11. That's because TCP uses something
+called "forward acknowledgement". Instead of acknowledging with an ACK field of
+10, it tells PC1 the sequence number of the next segment is expects to receive. 
+Finally, PC1 responds with a sequence number of 11 and using forward
+acknowledgement it sets a value of 51 in the ack field. PC2 replies with an seq
+number 51 and again uses forward acknowledgement by setting a value of 12 to
+the ack field. Then the exchange continues.
+
+**PC1 --> PC2**
+
+1. PC1: Seq 10
+2. PC2: Seq 50, Ack 11
+3. PC1: Seq 11, Ack 51
+4. PC2: Seq 51, Ack 12
+5. PC1: Seq 12, Ack 52
+6. PC2: Seq 52, Ack 13
+1. **...**
+
+Things to remember:
+
+- Hosts set a random initial sequence number.
+- Forward acknowledgement is used to indicate the sequence number of the next
+segment the host expects to receive.
+
+Obviously, these sequence numbers also allow hosts to know the correct order of
+segments, even if for some reason they arrive out of order. But what about "if
+a segment isn't acknowledged, it is sent again"?
+
+**PC1 --> PC2**
+1. Seq: 20
+2. Ack: 21
+3. Seq: 21, this segment DOES NOT reach PC2
+4. Seq: 21, after a certain amount of time passes with no Ack, PC1 resends the
+   segment. This is called TCP retransmission.
+5. Ack: 22
+
+Let us also see how TCP provides flow control.
+
+
+
