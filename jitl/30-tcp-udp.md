@@ -36,16 +36,18 @@ multiple tabs open, accessing multiple services at the same time.
 
 Imagine a PC (PC1) needs to communicate with a server (SRV1). At Layer 4, it's 
 using TCP and it uses a source port of 50000 and a destination port of 80. The
-destination port is very import, it identifies the application layer protocol.
+destination port is very important, it identifies the application layer
+protocol. 
+
 For example, TCP port 80 is used for HTTP, which is used to access websites.
-The source port is randomly selected by PC1, it helps to identify the session. 
+The source port is randomly selected by PC1, it helps to identify the session.
 After SRV1 receives the message, it will (probably) send a reply. In its reply,
-SRC and DST ports will be reversed. The source and destination port numbers will
-tell PC1 that the message is from the same communication session as the message
-it sent earlier.
+SRC and DST ports will be reversed. The source and destination port numbers
+will tell PC1 that the message is from the same communication session as the
+message it sent earlier.
 
     PC1 ---=(TCP):Src:50000 Dst:80=---> SRV1
-    SRV1 <---=(TCP):Src:80 Dst:50000=--- PC1 
+    PC1 <---=(TCP):Src:80 Dst:50000=--- SRV1
 
 What if PC1 opens a separate connection to SRV1? It might be using the same
 destination port (80), but it's using a different source port (55000). SRV1's
@@ -53,13 +55,13 @@ response will use that source port as its destination port, so PC1 knows it's
 part of that session. 
 
     PC1 ---=(TCP):Src:55000 Dst:80=---> SRV1
-    SRV1 <---=(TCP):Src:80 Dst:55000=--- PC1 
+    PC1 <---=(TCP):Src:80 Dst:55000=--- SRV1
 
 But PC1 want to access something on SRV2 at the same time. It uses a TCP
 destination port of 21[^1], and randomly selects the source port 60000.
 
     PC1 ---=(TCP):Src:60000 Dst:21=---> SRV2
-    SRV2 <---=(TCP):Src:21 Dst:60000=--- PC1 
+    PC1 <---=(TCP):Src:21 Dst:60000=--- SRV2
 
 [^1]: 21 is used for FTP, the File Transfer Protocol, its purpose is to
     transfer files.
