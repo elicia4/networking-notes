@@ -18,370 +18,367 @@
 
 ---
 
-- Show help:
+Show help:
 
-  ```
-  ?
-  ```
+```
+?
+```
 
-- Enter privileged EXEC mode[^1]:
+Enter privileged EXEC mode[^1]:
 
-  ```
-  enable
-  ```
+```
+enable
+```
 
-- Enter global configuration mode[^2]:
+Enter global configuration mode[^2]:
 
-  ```
-  configure terminal
-  ```
+```
+configure terminal
+```
 
-- Enter interface configuration mode:
+Enter interface configuration mode:
 
-  ```
-  interface <interface> <ID>
-  # i.e. interface gigabitethernet 0/0
-  interface <interfaceID> # you dont need a space, i.e.
-                          # interface gigabitethernet0/0
-  # just "g" instead of "gigabitethernet" also works:
-  # interface g0/0
-  ```
+```
+interface <interface> <ID>
+# i.e. interface gigabitethernet 0/0
+interface <interfaceID> # you dont need a space, i.e.
+                        # interface gigabitethernet0/0
+# just "g" instead of "gigabitethernet" also works:
+# interface g0/0
+```
 
-- To change the hostname:
+To change the hostname:
 
-  ```
-  hostname <name>
-  ```
+```
+hostname <name>
+```
 
-- Enable password (GCM):
+Enable password (GCM):
 
-  ```
-  enable password <password>
-  ```
+```
+enable password <password>
+```
 
-- Enable an MD5 encrypted password (GCM):
+Enable an MD5 encrypted password (GCM):
 
-  ```
-  enable secret <password>
-  ```
+```
+enable secret <password>
+```
 
-- Enable password encryption (GCM):
+Enable password encryption (GCM):
 
-  ```
-  service password-encryption
-  ```
+```
+service password-encryption
+```
 
-- Ping a host:
+Ping a host:
 
-  ```
-  ping <host>
-  ```
+```
+ping <host>
+```
 
-- Show the ARP table:
+Show the ARP table:
 
-  ```
-  arp -a # Win/Mac/Linux
-  show arp # Cisco IOS
-  ```
+```
+arp -a # Win/Mac/Linux
+show arp # Cisco IOS
+```
 
-- Show MAC address table:
+Show MAC address table:
 
-  ```
-  show mac address-table
-  ```
+```
+show mac address-table
+```
 
-- Clear dynamic entries in the MAC address table:
+Clear dynamic entries in the MAC address table:
 
-  ```
-  clear mac address-table dynamic # all
-  clear mac address-table dynamic interface <interface> # for an interface
-  clear mac address-table dynamic address <address> # for an address
-  ```
-  
-- Show configs:
+```
+clear mac address-table dynamic # all
+clear mac address-table dynamic interface <interface> # for an interface
+clear mac address-table dynamic address <address> # for an address
+```
 
-  ```
-  show running-config
-  show startup-config
-  ```
+Show configs:
 
-- Run a command from GCM in PEM:
+```
+show running-config
+show startup-config
+```
 
-  ```
-  do <command>
-  ```
+Run a command from GCM in PEM:
 
-- Remove a command from configuration:
+```
+do <command>
+```
 
-  ```
-  no <command>
-  ```
+Remove a command from configuration:
 
-- Write running configuration to memory, all three of these are
-   interchangeable:
-
-  ```
-  write memory
-  write
-  copy running-config startup-config
-  ```
-  
-- Show interface statuses + IP addresses:
-
-  ```
-  show ip interface brief
-  ```
-
-- To set an IP address:
-
-  ```
-  ip address <IP-Address> <subnet mask>
-  # i.e. ip address 10.255.255.254 255.0.0.0
-  ```
+```
+no <command>
+```
 
-- To enable an interface, should apply this to router interfaces since they are
-  shutdown by default:
-
-  ```
-  no shutdown
-  ```
+Write running configuration to memory, all three of these are interchangeable:
 
-- To show L1, L2 and error information about an interface:
+```
+write memory
+write
+copy running-config startup-config
+```
 
-  ```
-  show interfaces <interface>
-  ```
+Show interface statuses + IP addresses:
 
-- Show to show L1 and L2 statuses of interfaces (and description):
+```
+show ip interface brief
+```
 
-  ```
-  show interfaces description
-  ```
+To set an IP address:
 
-- To add a description to an interface:
+```
+ip address <IP-Address> <subnet mask>
+# i.e. ip address 10.255.255.254 255.0.0.0
+```
 
-  ```
-  # int <interface>
-  description <string>
-  # i.e. description ## to SW2 ##
-  ```
+To enable an interface, should apply this to router interfaces since they are
+shutdown by default:
 
-- Useful command to check switch interfaces (duplex, speed, type, vlan etc.),
-  this command DOES NOT work on routers, only switches:
+```
+no shutdown
+```
 
-  ```
-  show interfaces status
-  ```
+To show L1, L2 and error information about an interface:
 
-- To configure an interface's speed and duplex:
+```
+show interfaces <interface>
+```
 
-  ```
-  # conf t
-  # int <interface>
-  speed <speed>
-  duplex <auto/full/half>
-  # description ## to <device> ##
-  # sh int st
-  ```
+Show to show L1 and L2 statuses of interfaces (and description):
 
-- To configure multiple interfaces at once:
+```
+show interfaces description
+```
 
-  ```
-  # interface range f0/5 - 12
-  interface range <int# - #>
-  # description ## not in use ##
-  # shutdown
-  ```
-  
-  The interface numbers don't have to be in order, for example:
+To add a description to an interface:
 
-  ```
-  int range f0/5 - 6, f0/9 - 12
-  # no shut
-  ```
+```
+# int <interface>
+description <string>
+# i.e. description ## to SW2 ##
+```
 
-- To show the routing table:
+Useful command to check switch interfaces (duplex, speed, type, vlan etc.),
+this command DOES NOT work on routers, only switches:
 
-  ```
-  show ip route
-  ```
+```
+show interfaces status
+```
 
-- To configure a static route with next hop IP address:
+To configure an interface's speed and duplex:
 
-  ```
-  ip route <ip-address> <netmask> <next-hop>
-  # i.e. ip route 192.168.4.0 255.255.255.0 192.168.13.3
-  # routes traffic to the 192.168.4.0/24 subnet via 192.168.13.3
-  ```
-  
-  You can also configure a route with an exit interface:
+```
+# conf t
+# int <interface>
+speed <speed>
+duplex <auto/full/half>
+# description ## to <device> ##
+# sh int st
+```
 
-  ```
-  ip route <ip-address> <netmask> <exit-interface>
-  # i.e. ip route 192.168.4.0 255.255.255.0 g0/0
-  # routes traffic to the 192.168.4.0/24 subnet via the g0/0 interface
-  ```
+To configure multiple interfaces at once:
 
-  You can specify both as well:
+```
+# interface range f0/5 - 12
+interface range <int# - #>
+# description ## not in use ##
+# shutdown
+```
 
-  ```
-  ip route <ip-address> <netmask> <exit-interface> <next-hop>
-  ```
+The interface numbers don't have to be in order, for example:
 
-- To configure a default route on a Cisco router:
+```
+int range f0/5 - 6, f0/9 - 12
+# no shut
+```
 
-  ```
-  ip route 0.0.0.0 0.0.0.0 <next-hop>
-  ```
+To show the routing table:
 
-- To output lines that include a particular string, use `| include`, for
-  example:
+```
+show ip route
+```
 
-  ```
-  # show static routes configurations
-  show running-config | include ip route
-  ```
+To configure a static route with next hop IP address:
 
-  You can easily remove these configs with `no <configuration>`.
+```
+ip route <ip-address> <netmask> <next-hop>
+# i.e. ip route 192.168.4.0 255.255.255.0 192.168.13.3
+# routes traffic to the 192.168.4.0/24 subnet via 192.168.13.3
+```
 
-- To configure a custom MAC address:
+You can also configure a route with an exit interface:
 
-  ```
-  mac-address <mac address>
-  # mac-address 1234.1234.1234
-  ```
+```
+ip route <ip-address> <netmask> <exit-interface>
+# i.e. ip route 192.168.4.0 255.255.255.0 g0/0
+# routes traffic to the 192.168.4.0/24 subnet via the g0/0 interface
+```
 
-- To show the default gateway, MAC and IP addresses on a Windows machine:
+You can specify both as well:
 
-  ```
-  ipconfig /all
-  ```
+```
+ip route <ip-address> <netmask> <exit-interface> <next-hop>
+```
 
-- To view the entire file starting from `LINE`:
+To configure a default route on a Cisco router:
 
-  ```
-  sh run | begin <LINE>
-  ```
+```
+ip route 0.0.0.0 0.0.0.0 <next-hop>
+```
 
-- To view lines that do not include a `LINE`:
+To output lines that include a particular string, use `| include`, for example:
 
-  ```
-  sh run | exclude <LINE>
-  ```
+```
+# show static routes configurations
+show running-config | include ip route
+```
 
-- To view the sections containing a `LINE`:
+You can easily remove these configs with `no <configuration>`.
 
-  ```
-  sh run | section <LINE>
-  ```
+To configure a custom MAC address:
 
-- You can back up your configurations, to copy locally:
+```
+mac-address <mac address>
+# mac-address 1234.1234.1234
+```
 
-  ```
-  # copy run flash:my-config
-  copy run flash:<file-name>
-  ```
+To show the default gateway, MAC and IP addresses on a Windows machine:
 
-- To erase your startup-config:
+```
+ipconfig /all
+```
 
-  ```
-  wr erase
-  ```
+To view the entire file starting from `LINE`:
 
-- To show the contents of a file, use `more`, for example:
+```
+sh run | begin <LINE>
+```
 
-  ```
-  more flash:my-config
-  ```
+To view lines that do not include a `LINE`:
 
-- To reboot a device:
+```
+sh run | exclude <LINE>
+```
 
-  ```
-  reload
-  ```
+To view the sections containing a `LINE`:
 
-- To go back to UEM from PEM:
+```
+sh run | section <LINE>
+```
 
-  ```
-  disable
-  ```
+You can back up your configurations, to copy locally:
 
-- To go to UEM from any level:
+```
+# copy run flash:my-config
+copy run flash:<file-name>
+```
 
-  ```
-  end
-  ```
+To erase your startup-config:
 
-- To show VLAN information:
+```
+wr erase
+```
 
-  ```
-  show vlan brief
-  ```
+To show the contents of a file, use `more`, for example:
 
-- To configure VLAN access ports:
+```
+more flash:my-config
+```
 
-  ```
-  # interface range g0/1 - 3
-  switchport mode access
-  switchport access vlan <number>
-  ```
+To reboot a device:
 
-- To configure a trunk port:
+```
+reload
+```
 
-  ```
-  # interface g0/0
-  switchport trunk encapsulation dot1q # ISL/dot1q issue
-  switchport mode trunk
-  ```
+To go back to UEM from PEM:
 
-- To show trunk ports information:
+```
+disable
+```
 
-  ```
-  show interfaces trunk
-  ```
+To go to UEM from any level:
 
-- To modify allowed VLANs on a trunk:
+```
+end
+```
 
-  ```
-  switchport trunk allowed vlan 10,30 # reset list first, set list
-  switchport trunk allowed vlan add 20 # add to the existing list
-  switchport trunk allowed vlan remove 20 # remove from the existing list
-  switchport trunk allowed vlan all # allow all VLANs
-  switchport trunk allowed vlan none # allow no VLANs
-  switchport trunk allowed vlan except 1-5,10 # allow all VLANs except 1-5, 10
-  ```
+To show VLAN information:
 
-- To change the default VLAN (for better security, change it to an unused
-  VLAN):
+```
+show vlan brief
+```
 
-  ```
-  switchport trunk native vlan 1001
-  ```
+To configure VLAN access ports:
 
-- To create/select a VLAN (created automatically when assigned to interfaces):
+```
+# interface range g0/1 - 3
+switchport mode access
+switchport access vlan <number>
+```
 
-  ```
-  vlan <number>
-  ```
+To configure a trunk port:
 
-- To name a VLAN:
+```
+# interface g0/0
+switchport trunk encapsulation dot1q # ISL/dot1q issue
+switchport mode trunk
+```
 
-  ```
-  name <NAME>
-  # name Engineering
-  ``` 
+To show trunk ports information:
 
-- To show the IP address and the subnet mask on Linux:
+```
+show interfaces trunk
+```
 
-  ```
-  ifconfig
-  ```
+To modify allowed VLANs on a trunk:
 
-  To show the default gateway:
+```
+switchport trunk allowed vlan 10,30 # reset list first, set list
+switchport trunk allowed vlan add 20 # add to the existing list
+switchport trunk allowed vlan remove 20 # remove from the existing list
+switchport trunk allowed vlan all # allow all VLANs
+switchport trunk allowed vlan none # allow no VLANs
+switchport trunk allowed vlan except 1-5,10 # allow all VLANs except 1-5, 10
+```
 
-  ```
-  ip route
-  ```
+To change the default VLAN (for better security, change it to an unused VLAN):
+
+```
+switchport trunk native vlan 1001
+```
+
+To create/select a VLAN (created automatically when assigned to interfaces):
+
+```
+vlan <number>
+```
+
+To name a VLAN:
+
+```
+name <NAME>
+# name Engineering
+``` 
+
+To show the IP address and the subnet mask on Linux:
+
+```
+ifconfig
+```
+
+To show the default gateway:
+
+```
+ip route
+```
 
 [^1]: PEM from here on 
 [^2]: GCM from here on 
