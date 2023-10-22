@@ -310,51 +310,6 @@ To go to UEM from any level:
 end
 ```
 
-To show VLAN information:
-
-```
-show vlan brief
-```
-
-To configure VLAN access ports:
-
-```
-# interface range g0/1 - 3
-switchport mode access
-switchport access vlan <number>
-```
-
-To configure a trunk port:
-
-```
-# interface g0/0
-switchport trunk encapsulation dot1q # ISL/dot1q issue
-switchport mode trunk
-```
-
-To show trunk ports information:
-
-```
-show interfaces trunk
-```
-
-To modify allowed VLANs on a trunk:
-
-```
-switchport trunk allowed vlan 10,30 # reset list first, set list
-switchport trunk allowed vlan add 20 # add to the existing list
-switchport trunk allowed vlan remove 20 # remove from the existing list
-switchport trunk allowed vlan all # allow all VLANs
-switchport trunk allowed vlan none # allow no VLANs
-switchport trunk allowed vlan except 1-5,10 # allow all VLANs except 1-5, 10
-```
-
-To change the default VLAN (for better security, change it to an unused VLAN):
-
-```
-switchport trunk native vlan 1001
-```
-
 To create/select a VLAN (created automatically when assigned to interfaces):
 
 ```
@@ -378,6 +333,51 @@ To show the default gateway on Linux:
 
 ```
 ip route
+```
+
+To show VLAN information (only shows *access* ports assigned to each VLAN):
+
+```
+show vlan brief
+```
+
+To show trunk ports information:
+
+```
+show interfaces trunk
+```
+
+To configure VLAN access ports:
+
+```
+# interface range g0/1 - 3
+switchport mode access
+switchport access vlan <number>
+```
+
+To configure a trunk port:
+
+```
+# interface g0/0
+switchport trunk encapsulation dot1q # ISL/dot1q issue
+switchport mode trunk
+```
+
+To modify allowed VLANs on a trunk:
+
+```
+switchport trunk allowed vlan 10,30 # reset list first, set list
+switchport trunk allowed vlan add 20 # add to the existing list
+switchport trunk allowed vlan remove 20 # remove from the existing list
+switchport trunk allowed vlan all # allow all VLANs
+switchport trunk allowed vlan none # allow no VLANs
+switchport trunk allowed vlan except 1-5,10 # allow all VLANs except 1-5, 10
+```
+
+To change the default VLAN (for better security, change it to an unused VLAN):
+
+```
+switchport trunk native vlan 1001
 ```
 
 [^1]: PEM from here on 
