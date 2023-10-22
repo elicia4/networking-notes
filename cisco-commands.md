@@ -374,7 +374,7 @@ To show the IP address and the subnet mask on Linux:
 ifconfig
 ```
 
-To show the default gateway:
+To show the default gateway on Linux:
 
 ```
 ip route
