@@ -365,7 +365,7 @@ switchport mode trunk
 
 To modify allowed VLANs on a trunk:
 
-```
+```sh
 switchport trunk allowed vlan 10,30 # reset list first, set list
 switchport trunk allowed vlan add 20 # add to the existing list
 switchport trunk allowed vlan remove 20 # remove from the existing list
@@ -378,6 +378,38 @@ To change the default VLAN (for better security, change it to an unused VLAN):
 
 ```
 switchport trunk native vlan 1001
+```
+
+General trunk configuration process:
+
+```
+interface g0/1 # choose interface(s)
+switchport trunk encapsulation dot1q # change encapsulation type
+switchport mode trunk # enable trunk
+switchport trunk allowed 10,20,30 # allow VLANs
+switchport trunk native vlan 1001 # change native VLAN
+do show interfaces trunk # show configured trunk ports
+```
+
+To configure a ROAS interface:
+
+```
+interface g0/0
+no shutdown
+interface g0/0.10 # enter subinterface configuration mode
+encapsulation dot1q 10 # make the VLAN number match the subinterface number.
+                       # It's not necessary, but it's recommended. This command
+                       # tells the router to treat any frame that is tagged
+                       # with that VLAN number as if they arrived on that
+                       # subinterface.
+ip address 192.168.1.62 255.255.255.192
+interface g0/0.20
+encapsulation dot1q 20
+ip address 192.168.1.126 255.255.255.192
+interface g0/0.30
+encapsulation dot1q 30
+ip address 192.168.1.190 255.255.255.192
+do sh ip interface brief # confirm
 ```
 
 [^1]: PEM from here on 
