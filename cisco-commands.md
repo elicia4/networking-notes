@@ -1,15 +1,16 @@
 # Cisco Commands
 
-- Shortcuts:
-    - To go to the previous command, use the `Up` arrow or `CTRL+P`.
-    - To go to the next command, use the `Down` arrow or `CTRL+N`.
-    - To go to the beginning of the command line, use `CTRL+A`.
-    - To go the end of the command line, use `CTRL+E`.
-    - To delete a word: `CTRL+W`.
-    - To erase characters from the cursor to beginning of the line: `CTRL+U`
-       or `CTRL+X`.
-    - To exit from GCM: `CTRL+C`.
-    - Cancel a command: `CTRL+Shift+6`
+**Shortcuts**
+
+- Go to the previous command: `Up arrow` or `CTRL+P`.
+- Go to the next command: `Down arrow` or `CTRL+N`.
+- Go to the beginning of the command line: `CTRL+A`.
+- Go the end of the command line: `CTRL+E`.
+- Delete a word: `CTRL+W`.
+- Erase characters from the cursor to beginning of the line: `CTRL+U` or
+  `CTRL+X`.
+- Exit from global configuration mode: `CTRL+C`.
+- Cancel a command: `CTRL+Shift+6`
 
 ---
 
