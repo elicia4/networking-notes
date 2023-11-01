@@ -359,7 +359,7 @@ To configure a trunk port:
 
 ```
 # interface g0/0
-switchport trunk encapsulation dot1q # ISL/dot1q issue
+# switchport trunk encapsulation dot1q # ISL/dot1q issue, not always necessary
 switchport mode trunk
 ```
 
@@ -410,6 +410,57 @@ interface g0/0.30
 encapsulation dot1q 30
 ip address 192.168.1.190 255.255.255.192
 do sh ip interface brief # confirm
+```
+
+To configure a native VLAN on router:
+
+On the router subinterface:
+
+```
+# int g0/0.10
+encapsulation dot1q <vlan-id> native
+```
+
+You can also configure the IP for the native VLAN on the router's physical
+interface:
+
+```
+# no interface g0/0.10
+# interface g0/0
+# ip address 192.168.1.62 255.255.255.192
+ip address <native-vlan-ip> <native-vlan-mask>
+```
+
+To reset an interface to its default settings:
+
+```
+default interface <interfaceID>
+# this will delete all subinterfaces
+# default interface g0/0
+```
+
+To enable Layer 3 routing on a switch:
+
+```
+ip routing
+```
+
+To configure an interface as a routed port (Layer 3 port, not Layer 2
+switchport):
+
+```
+no switchport
+```
+
+To configure Switch Virtual Interfaces(SVIs):
+
+```
+interface <vlan-number>
+# interface vlan10
+ip address <IP> <mask>
+no shutdown
+# SVIs are shutdown by default
+# if it doesn't work, make sure the VLAN exists
 ```
 
 [^1]: PEM from here on 
